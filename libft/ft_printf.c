@@ -6,11 +6,11 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:21:54 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/19 12:22:03 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:01:30 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	ft_printspecifier(const char string, va_list *args, int *count)
 {
