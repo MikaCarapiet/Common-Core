@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:37:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2025/11/25 14:28:25 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:22:07 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,24 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		size;
-	char	*substr;
+	char	*res;
+	char	*src;
+	size_t	reslen;
 
-	size = ft_strlen(s) - start;
-	if (s[0] == '\0' || size < 0)
-	{
-		substr = (char *)malloc((1) * sizeof(char));
-		substr[0] = '\0';
-		return (substr);
-	}
-	if ((int)len > size)
-	{
-		substr = (char *)malloc((size + 1) * sizeof(char));
-		if (substr == NULL)
-			return (NULL);
-		ft_strlcpy(substr, &s[start], size + 1);
-	}
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < (size_t)start)
+		return (ft_strdup(""));
+	src = (char *)s + start;
+	if (ft_strlen(src) < len)
+		reslen = ft_strlen(src) + 1;
 	else
-	{
-		substr = (char *)malloc((len + 1) * sizeof(char));
-		if (substr == NULL)
-			return (NULL);
-		ft_strlcpy(substr, &s[start], len + 1);
-	}
-	return (substr);
+		reslen = len + 1;
+	res = malloc(reslen * sizeof(char));
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, src, reslen);
+	return (res);
 }
 
 // int	main(void)

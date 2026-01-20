@@ -6,54 +6,53 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:03:38 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/15 13:23:04 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/19 16:55:36 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int character)
 {
-	int				i;
-	unsigned char	ch;
+	unsigned char	c;
 
-	i = 0;
-	ch = c;
-	if (ch == '\0')
+	c = character;
+	while (*str != '\0')
 	{
-		i = ft_strlen(str);
-		return ((char *)str + i++);
+		if (*str == c)
+		{
+			return ((char *)str);
+		}
+		str++;
 	}
-	while (str[i])
-	{
-		if (str[i] == ch)
-			return ((char *)str + i);
-		i++;
-	}
+	if (c == '\0')
+		return ((char *)str);
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *str)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
+	char	*ptr;
+	size_t	m;
+	int		i;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*s2;
-	size_t	len;
-
-	len = ft_strlen(s1) + 1;
-	s2 = malloc(len * sizeof(char));
-	if (!s2)
+	m = 0;
+	while (s[m] != '\0')
+	{
+		m++;
+	}
+	ptr = (char *)malloc(ft_strlen(s) + 1);
+	if (ptr == NULL)
 		return (NULL);
-	ft_strlcpy(s2, s1, len);
-	return (s2);
+	i = 0;
+	while (m > 0)
+	{
+		ptr[i] = s[i];
+		i++;
+		m--;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -77,6 +76,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(res, src, reslen);
 	return (res);
 }
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -117,6 +117,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		s[len + i] = s2[i];
 		i++;
 	}
-	s[len + i] = '\0'; // ← ADD THIS LINE
+	s[len + i] = '\0';
 	return (s);
 }

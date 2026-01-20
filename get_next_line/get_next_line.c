@@ -6,18 +6,21 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:03:40 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/17 22:50:05 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:05:33 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// BUFFER_SIZE will be defined at compilation with -D flag
-// Example: cc -D BUFFER_SIZE=42 main.c
-// If not defined, this gives a default
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*extract_line(char *buffer, char *line, char **leftover)
 {
@@ -42,6 +45,7 @@ char	*extract_line(char *buffer, char *line, char **leftover)
 		*leftover = ft_strdup(newline_pos + 1);
 	return (line);
 }
+
 char	*extract_leftover(char **leftover)
 {
 	size_t	line_len;
@@ -65,12 +69,14 @@ char	*extract_leftover(char **leftover)
 	}
 	return (line);
 }
+
 char	*fill_line_buffer(int fd, char *buffer, char *line, char **leftover)
 {
 	ssize_t	bytes_read;
 	char	*temp;
 
-	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	while (bytes_read > 0)
 	{
 		buffer[bytes_read] = '\0';
 		if (!ft_strchr(buffer, '\n'))
@@ -85,27 +91,28 @@ char	*fill_line_buffer(int fd, char *buffer, char *line, char **leftover)
 			}
 		}
 		else
-		{
-			line = extract_line(buffer, line, leftover);
-			return (line);
-		}
+			return (extract_line(buffer, line, leftover));
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
 	return (line);
 }
+
 char	*get_next_line(int fd)
 {
-	char		buffer[BUFFER_SIZE + 1];
 	static char	*leftover;
 	char		*line;
+	char		*buffer;
 
 	if (fd == -1)
 		return (NULL);
+	buffer = malloc(BUFFER_SIZE + 1);
 	line = NULL;
 	if (leftover != NULL)
 	{
 		if (ft_strchr(leftover, '\n'))
 		{
 			line = extract_leftover(&leftover);
+			free(buffer);
 			return (line);
 		}
 		else
@@ -115,19 +122,21 @@ char	*get_next_line(int fd)
 		}
 	}
 	line = fill_line_buffer(fd, buffer, line, &leftover);
+	free(buffer);
 	return (line);
 }
 
 // int	main(void)
 // {
-// 	char	buffer[BUFFER_SIZE];
-// 	ssize_t	bytes_read;
 // 	int		fd;
 // 	char	*line;
 
 // 	fd = open("example.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("gnt returned : %s,%d", line, fd);
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("gnt returned : %s\n", line);
+// 		free(line); // <-- Add this
+// 	}
 // 	close(fd);
 // 	return (0);
 // }

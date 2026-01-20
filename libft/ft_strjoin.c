@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:29:29 by mcarapie          #+#    #+#             */
-/*   Updated: 2025/11/25 14:52:09 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:17:48 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	total_len;
-	char	*str;
+	char	*s;
+	size_t	len;
+	int		i;
 
-	if (s1 == NULL || s2 == NULL)
-	{
-		str = (char *)malloc((1) * sizeof(char));
-		str[0] = '\0';
-		return (str);
-	}
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)malloc((total_len + 1) * sizeof(char));
-	if (str == NULL)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	s = malloc(len + (1 * sizeof(char)));
+	if (!s)
 		return (NULL);
-	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
-	ft_strlcat(str, s2, total_len + 1);
-	return (str);
+	len = 0;
+	while (s1[len])
+	{
+		s[len] = s1[len];
+		len++;
+	}
+	i = 0;
+	while (s2[i])
+	{
+		s[len + i] = s2[i];
+		i++;
+	}
+	s[len + i] = '\0';
+	return (s);
 }
 
 // int	main(void)
