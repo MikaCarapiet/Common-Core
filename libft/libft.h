@@ -6,19 +6,25 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 17:20:57 by mcarapie          #+#    #+#             */
-/*   Updated: 2025/12/01 13:35:17 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:38:46 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <fcntl.h>
 # include <limits.h>
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 typedef struct s_list
 {
@@ -83,4 +89,28 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+// printf
+int					ft_printf(const char *string, ...);
+size_t				ft_strlen(const char *str);
+char				*ft_strchr(const char *str, int c);
+void				ft_printchar(char c, int *count);
+void				ft_printstr(char *s, int *count);
+void				ft_printnbr(int n, int *count);
+void				ft_printunsignedint(unsigned int n, int *count);
+void				ft_printhexaupper(unsigned int n, int *count);
+void				ft_printhexalower(unsigned int n, int *count);
+void				ft_printpointer(void *ptr, int *count);
+void				ft_printspecifier(const char string, va_list *args,
+						int *count);
+// get_next_line
+
+char				*get_next_line(int fd);
+size_t				ft_strlen(const char *str);
+char				*ft_strchr(const char *str, int c);
+char				*ft_strdup(const char *s1);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char				*ft_strjoin(char const *s1, char const *s2);
+
 #endif
