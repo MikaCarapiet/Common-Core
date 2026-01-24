@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 17:20:57 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/20 17:00:52 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:35:17 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 // printf
 int					ft_printf(const char *string, ...);
-size_t				ft_strlen(const char *str);
-char				*ft_strchr(const char *str, int c);
 void				ft_printchar(char c, int *count);
 void				ft_printstr(char *s, int *count);
 void				ft_printnbr(int n, int *count);

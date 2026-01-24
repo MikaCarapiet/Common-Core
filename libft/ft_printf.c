@@ -6,11 +6,50 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:21:54 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/20 17:01:30 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:12:41 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	ft_printchar(char c, int *count)
+{
+	write(1, &c, 1);
+	*count += 1;
+}
+
+void	ft_printstr(char *s, int *count)
+{
+	if (s == NULL)
+		ft_printstr("(null)", count);
+	else
+	{
+		while (*s != '\0')
+		{
+			ft_printchar(*s, count);
+			s++;
+		}
+	}
+}
+
+void	ft_printnbr(int n, int *count)
+{
+	long	nbr;
+
+	nbr = n;
+	if (nbr < 0)
+	{
+		ft_printchar('-', count);
+		nbr = -nbr;
+	}
+	if (nbr >= 10)
+	{
+		ft_printnbr(nbr / 10, count);
+		ft_printchar((nbr % 10) + '0', count);
+	}
+	else
+		ft_printchar(nbr + '0', count);
+}
 
 void	ft_printspecifier(const char string, va_list *args, int *count)
 {

@@ -6,21 +6,11 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:03:40 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/20 16:38:59 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:12:10 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*extract_line(char *buffer, char *line, char **leftover)
 {

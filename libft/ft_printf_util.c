@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_util2.c                                  :+:      :+:    :+:   */
+/*   ft_printf_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 16:37:06 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/20 16:35:57 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:16:54 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,7 @@ void	ft_printhexapointer(unsigned long n, int *count)
 void	ft_printpointer(void *ptr, int *count)
 {
 	unsigned long	address;
-	char			*hexa;
 
-	hexa = "0123456789abcdef";
 	address = (unsigned long)ptr;
 	if (ptr == 0)
 	{
