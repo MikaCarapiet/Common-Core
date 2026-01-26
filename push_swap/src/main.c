@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:14 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/26 14:50:26 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:19:12 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	print_error(char *str)
 	return (1);
 }
 
-Node	*ft_lstnew_node(int content)
+t_Node	*ft_lstnew_node(int content)
 {
-	Node	*n;
+	t_Node	*n;
 
-	n = malloc(sizeof(Node));
+	n = malloc(sizeof(t_Node));
 	if (n == NULL)
 		return (NULL);
 	n->content = content;
@@ -30,10 +30,10 @@ Node	*ft_lstnew_node(int content)
 	return (n);
 }
 
-int	ft_lstsize_node(Node *lst)
+int	ft_lstsize_node(t_Node *lst)
 {
 	int		i;
-	Node	*ptr;
+	t_Node	*ptr;
 
 	i = 0;
 	ptr = lst;
@@ -53,9 +53,7 @@ long	ft_strtol(const char *strg)
 	res = 0;
 	i = 0;
 	sign = 1;
-	if ((strg[i] >= 9 && strg[i] <= 13) || (strg[i] >= 'A' && strg[i] <= 'Z')
-		|| (strg[i] >= 'a' && strg[i] <= 'z') || strg[i] == ' '
-		|| strg[i] == '+')
+	if ((strg[i] < '0' || strg[i] > '9') && strg[i] != '-')
 		return (LONG_MAX);
 	else if (strg[i] == '-')
 	{
@@ -67,45 +65,61 @@ long	ft_strtol(const char *strg)
 		if (strg[i] >= '0' && strg[i] <= '9')
 			res = res * 10 + (strg[i] - '0');
 		else
-			return (res * sign);
+			return (LONG_MAX);
 		i++;
 	}
 	return (res * sign);
 }
 
-int	validate_arg(int argc, char **argv)
+long	*validate_arg(int argc, char **argv, int *index)
 {
-	int		i;
 	long	*list;
-	int		list_size;
-	int		n;
+	int		size;
 
-	n = 0;
-	if (argc < 2)
-		return (print_error(""));
-	list = malloc((argc - 1) * sizeof(int));
+	list = NULL;
+	size = 1;
+	*index = 0;
+	list = malloc((argc - 1) * sizeof(long));
 	if (list == NULL)
-		return (print_error("Error\n"));
-	i = 1;
-	list_size = 0;
-	while (i < argc)
+		return (NULL);
+	while (size < argc)
 	{
-		list[list_size] = ft_strtol(argv[i]);
-		if ((list[list_size] > INT_MAX) || (list[list_size] < INT_MIN))
+		list[*index] = ft_strtol(argv[size]);
+		if ((list[*index] > INT_MAX) || (list[*index] < INT_MIN))
 		{
 			free(list);
-			return (print_error("Error\n"));
+			return (NULL);
 		}
-		list_size++;
-		i++;
+		*index += 1;
+		size += 1;
 	}
-	while (n < list_size)
+	return (list);
+}
+long	*check_duplicate(long *list, int size)
+{
+	int	i;
+	int	j;
+	int	*unique_list;
+
+	i = 0;
+	unique_list = malloc(size * sizeof(long));
+	if (!*list || !unique_list)
+		return (NULL);
+	while (++i < size)
 	{
-		printf("list[%d] %ld\n", n + 1, list[n]);
-		n++;
+		j = 0;
+		while (++j < i)
+		{
+			if (unique_list[j] == list[i])
+			{
+				free(unique_list);
+				return (NULL);
+			}
+		}
+		unique_list[i] = list[i];
 	}
-	printf("list size = %d\n", list_size);
-	return (0);
+	free(unique_list);
+	return (list);
 }
 // int	check_error(char **string_nums)
 // {
@@ -144,9 +158,26 @@ int	validate_arg(int argc, char **argv)
 // }
 int	main(int argc, char **argv)
 {
-	if (validate_arg(argc, argv))
-		return (1);
-	// ft_printf("%d %s", argc, argv[1]);
+	long	*list;
+	int		size;
+	int		i;
+
+	i = 0;
+	if (argc < 2)
+		return (0);
+	list = validate_arg(argc, argv, &size);
+	if (!list)
+		return (print_error("Error\n"));
+	list = check_duplicate(list, size);
+	if (!list)
+		return (print_error("Error\n"));
+	while (i < (size))
+	{
+		printf("%ld\n", list[i]);
+		i++;
+	}
+	printf("size = %d\n", size);
+	free(list);
 	return (0);
 }
 

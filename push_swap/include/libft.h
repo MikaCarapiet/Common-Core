@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 17:20:57 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/25 14:38:42 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:00:15 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 #  define BUFFER_SIZE 10
 # endif
 
-typedef struct Node
+typedef struct s_Node
 {
 	int				content;
-	struct Node		*next;
-}					Node;
+	struct s_Node	*next;
+}					t_Node;
 
 typedef struct s_list
 {
@@ -86,7 +86,7 @@ int					ft_atoi(const char *strg);
 char				*ft_itoa(int n);
 
 // Linked List
-Node				*ft_lstnew(void *content);
+t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 
