@@ -1,7 +1,6 @@
 .DS_Store
 .vscode/
-get_next_line/.git/
-printf/.git/
+
 *.o
 *.a
 *.out
