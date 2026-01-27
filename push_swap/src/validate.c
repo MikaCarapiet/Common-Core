@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:17:22 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/27 10:22:44 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:12:00 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,66 +40,56 @@ long	ft_strtol(const char *strg)
 	return (res * sign);
 }
 
-long	*parse_arg(int argc, char **argv, int *index)
+long	*parse_arg(int argc, char **argv)
 {
 	long	*list;
-	int		size;
+	int		i;
 
 	list = NULL;
-	size = 1;
-	*index = 0;
 	list = malloc((argc - 1) * sizeof(long));
 	if (list == NULL)
 		return (NULL);
-	while (size < argc)
+	i = 0;
+	while (++i < argc)
 	{
-		list[*index] = ft_strtol(argv[size]);
-		if ((list[*index] > INT_MAX) || (list[*index] < INT_MIN))
-		{
-			free(list);
-			return (NULL);
-		}
-		*index += 1;
-		size += 1;
+		list[i - 1] = ft_strtol(argv[i]);
+		if ((list[i - 1] > INT_MAX) || (list[i - 1] < INT_MIN))
+			return (free(list), NULL);
 	}
 	return (list);
 }
 
-long	*check_duplicate(long *list, int *size)
+long	*check_duplicate(long *list, int size)
 {
 	int	i;
 	int	j;
 	int	*unique_list;
 
 	i = 0;
-	unique_list = malloc(*size * sizeof(long));
+	unique_list = malloc(size * sizeof(long));
 	if (!*list || !unique_list)
 		return (NULL);
-	while (i < *size)
+	while (i < size)
 	{
 		j = 0;
 		while (j < i)
 		{
 			if (unique_list[j] == list[i])
-			{
-				free(unique_list);
-				return (NULL);
-			}
+				return (free(unique_list), NULL);
 			j++;
 		}
 		unique_list[i] = list[i];
 		i++;
 	}
-	free(unique_list);
-	return (list);
+	return (free(unique_list), list);
 }
 
-int	validate_arg(int argc, char **argv, int *size, long **list)
+int	validate_arg(int argc, char **argv, long **list)
 {
-	*list = parse_arg(argc, argv, size);
+	*list = parse_arg(argc, argv);
 	if (!*list)
 		return (print_error("Error\n"));
-	*list = check_duplicate(*list, size);
+	*list = check_duplicate(*list, (argc - 1));
 	if (!*list)
 		return (print_error("Error\n"));
 	return (0);
