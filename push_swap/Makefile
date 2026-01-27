@@ -6,13 +6,13 @@ SRCDIR = src
 OBJDIR = obj
 LIBDIR = libft
 
-SRCS = main.c
+SRCS = main.c validate.c
 OBJS = $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
 LIBNAME = libft.a
 LIB = $(LIBDIR)/$(LIBNAME)
 
-all: $(NAME) 
+all: $(NAME)
 
 $(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBDIR) -lft -o $(NAME)

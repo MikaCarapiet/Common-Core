@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 17:20:57 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/26 16:00:15 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:22:05 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@
 #  define BUFFER_SIZE 10
 # endif
 
-typedef struct s_Node
-{
-	int				content;
-	struct s_Node	*next;
-}					t_Node;
-
 typedef struct s_list
 {
 	void			*content;
@@ -39,7 +33,6 @@ typedef struct s_list
 }					t_list;
 
 // Character Handling
-int					main(int argc, char *argv[]);
 
 int					ft_isprint(int c);
 int					ft_isdigit(int c);
