@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 11:36:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 09:52:18 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:07:06 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,26 @@ t_stack	*initialize_stack_b(void)
 	return (b);
 }
 
-int	initialize_stacks(t_stack **a, t_stack **b, long *list, int size)
+void	print_stack(char *str, t_stack *head)
 {
 	t_stack	*ptr;
 
+	ptr = head;
+	printf("%s", str);
+	while (ptr)
+	{
+		printf("%d\n", ptr->content);
+		ptr = ptr->next;
+	}
+	printf("\n");
+}
+
+int	initialize_stacks(t_stack **a, t_stack **b, long *list, int size)
+{
 	*a = initialize_stack_a(list, size);
 	*b = initialize_stack_b();
 	if (!*a)
 		return (print_error("Error\n"));
-	ptr = *a;
-	while (ptr)
-	{
-		printf("a %d\n", ptr->content);
-		ptr = ptr->next;
-	}
-	push(a, b);
-	push(a, b);
-	push(a, b);
-	ptr = *b;
-	while (ptr)
-	{
-		printf("b %d\n", ptr->content);
-		ptr = ptr->next;
-	}
+	print_stack("stack a\n", *a);
 	return (0);
 }

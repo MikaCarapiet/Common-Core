@@ -6,7 +6,7 @@ SRCDIR = src
 OBJDIR = obj
 LIBDIR = libft
 
-SRCS = main.c validate.c initialize.c rules1.c rules2.c
+SRCS = main.c validate.c initialize.c rules1.c rules2.c lst_functions.c
 OBJS = $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
 LIBNAME = libft.a

@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 09:51:30 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:04:53 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ int					initialize_stacks(t_stack **a, t_stack **b, long *list,
 						int size);
 t_stack				*initialize_stack_a(long *list, int size);
 t_stack				*initialize_stack_b(void);
+
+void				print_stack(char *str, t_stack *head);
 void				push(t_stack **src, t_stack **dst);
 void				swap(t_stack **head);
 void				rotate(t_stack **head);
 void				swap_both(t_stack **a, t_stack **b);
 void				rotate_both(t_stack **a, t_stack **b);
-
+void				reverse_rotate_both(t_stack **a, t_stack **b);
+void				reverse_rotate(t_stack **head);
 #endif

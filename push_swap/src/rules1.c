@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:28:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 09:49:37 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:04:47 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	rotate(t_stack **head)
 {
 	t_stack	*first;
 	t_stack	*last;
-	t_stack	*penultimate;
+	t_stack	*second;
 
 	if (!*head || !(*head)->next)
 	{
@@ -45,12 +45,11 @@ void	rotate(t_stack **head)
 	else
 	{
 		first = *head;
-		penultimate = ft_lstpen_stack(*head);
+		second = (*head)->next;
 		last = ft_lstlast_stack(*head);
-		last->next = (*head)->next;
-		penultimate->next = first;
+		last->next = first;
 		first->next = NULL;
-		*head = last;
+		*head = second;
 	}
 }
 
