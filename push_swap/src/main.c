@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:14 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 00:43:30 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/28 10:57:28 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,5 @@ int	main(int argc, char **argv)
 		return (1);
 	if (initialize_stacks(&stack_a, &stack_b, list, size))
 		return (1);
-	return (free(list), deallocate(&stack_a) + deallocate(&stack_b));
+	return (free(list), deallocate(&stack_a));
 }
