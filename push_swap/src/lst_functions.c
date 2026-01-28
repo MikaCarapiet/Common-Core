@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:03:51 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 16:04:49 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:08:38 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	insert_beginning(t_stack **root, int content)
 
 int	deallocate(t_stack **root)
 {
-	t_stack *curr;
-	t_stack *aux;
+	t_stack	*curr;
+	t_stack	*aux;
 
 	curr = *root;
 	while (curr != NULL)
