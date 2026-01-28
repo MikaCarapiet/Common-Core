@@ -4,4 +4,4 @@
 *.a
 *.out
 /libft_printf_test
-push_swap
+/push_swap/push_swap
