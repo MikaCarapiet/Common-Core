@@ -1,7 +1,7 @@
 .DS_Store
 .vscode/
-
 *.o
 *.a
 *.out
 /libft_printf_test
+push_swap
