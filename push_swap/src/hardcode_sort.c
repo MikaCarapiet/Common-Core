@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:15:40 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/15 13:51:31 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/23 16:00:44 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,32 @@ int	three_sort(t_stack **a)
 
 int	four_sort(t_stack **a, t_stack **b)
 {
+	int	first;
+	int	second;
+	int	third;
+	int	fourth;
+	int	max;
+
+	first = (*a)->content;
+	second = (*a)->next->content;
+	third = (*a)->next->next->content;
+	fourth = ft_lstlast_stack(*a)->content;
+	max = first;
+	if (first < second)
+		max = second;
+	if (second < third)
+		max = third;
+	if (third < fourth)
+		max = fourth;
+	if (max == first)
+	{
+		push(a, b, "pb");
+		three_sort(a);
+		push(b, a, "pa");
+	}
+	else if (max == second)
+		reverse_rotate(a, "rra");
+	if ((*a)->next->content < (*a)->content)
+		swap(a, "sa");
+	return (0);
 }

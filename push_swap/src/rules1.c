@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:28:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/11 15:03:00 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/23 15:28:49 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	swap(t_stack **head, char *str)
 {
 	t_stack	*first;
 	t_stack	*second;
-	t_stack	*temp
-	;
+	t_stack	*temp;
 
 	if (!*head || !(*head)->next)
 	{
