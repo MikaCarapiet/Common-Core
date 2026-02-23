@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:15:40 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/23 16:00:44 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:04:03 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,36 @@ int	three_sort(t_stack **a)
 
 int	four_sort(t_stack **a, t_stack **b)
 {
-	int	first;
-	int	second;
-	int	third;
-	int	fourth;
-	int	max;
+	int	min_pos;
+	int	current_pos;
 
-	first = (*a)->content;
-	second = (*a)->next->content;
-	third = (*a)->next->next->content;
-	fourth = ft_lstlast_stack(*a)->content;
-	max = first;
-	if (first < second)
-		max = second;
-	if (second < third)
-		max = third;
-	if (third < fourth)
-		max = fourth;
-	if (max == first)
+	get_min_val(a, &min_pos, &current_pos);
+	if (min_pos == 0)
 	{
 		push(a, b, "pb");
 		three_sort(a);
 		push(b, a, "pa");
 	}
-	else if (max == second)
-		reverse_rotate(a, "rra");
-	if ((*a)->next->content < (*a)->content)
-		swap(a, "sa");
 	return (0);
+}
+void	get_min_val(t_stack **a, int *min_pos, int *current_pos)
+{
+	int		min_val;
+	t_stack	*ptr;
+
+	min_val = (*a)->content;
+	ptr = (*a);
+	*min_pos = 0;
+	*current_pos = 0;
+	while (ptr)
+	{
+		if (min_val > ptr->content)
+		{
+			min_val = ptr->content;
+			*min_pos = *current_pos;
+		}
+		*current_pos = *current_pos + 1;
+		ptr = ptr->next;
+	}
+	printf("%d = min_val, %d = min_pos\n", min_val, *min_pos);
 }

@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/15 13:52:47 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/23 17:58:27 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int					is_unsorted(t_stack *a);
 int					two_sort(t_stack **a);
 int					three_sort(t_stack **a);
 int					four_sort(t_stack **a, t_stack **b);
+void				get_min_val(t_stack **a, int *min_pos, int *current_pos);
 
 #endif
