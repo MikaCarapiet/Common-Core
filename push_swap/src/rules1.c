@@ -6,18 +6,19 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:28:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 16:04:47 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:03:00 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/push_swap.h"
 
-void	swap(t_stack **head)
+void	swap(t_stack **head, char *str)
 {
 	t_stack	*first;
 	t_stack	*second;
-	t_stack	*temp;
+	t_stack	*temp
+	;
 
 	if (!*head || !(*head)->next)
 	{
@@ -31,9 +32,10 @@ void	swap(t_stack **head)
 		first->next = temp;
 		*head = second;
 	}
+	ft_printf("%s\n", str);
 }
 
-void	rotate(t_stack **head)
+void	rotate(t_stack **head, char *str)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -51,16 +53,19 @@ void	rotate(t_stack **head)
 		first->next = NULL;
 		*head = second;
 	}
+	ft_printf("%s\n", str);
 }
 
 void	rotate_both(t_stack **a, t_stack **b)
 {
-	rotate(a);
-	rotate(b);
+	rotate(a, NULL);
+	rotate(b, NULL);
+	ft_printf("rr\n");
 }
 
 void	swap_both(t_stack **a, t_stack **b)
 {
-	swap(a);
-	swap(b);
+	swap(a, NULL);
+	swap(b, NULL);
+	ft_printf("ss\n");
 }

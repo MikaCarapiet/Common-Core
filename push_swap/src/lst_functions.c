@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:03:51 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 16:08:38 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:14:34 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,26 @@ void	insert_beginning(t_stack **root, int content)
 	*root = new_node;
 }
 
-int	deallocate(t_stack **root)
+int	deallocate(t_stack **a, t_stack **b)
 {
 	t_stack	*curr;
 	t_stack	*aux;
 
-	curr = *root;
+	curr = *a;
 	while (curr != NULL)
 	{
-		aux = curr;
-		curr = curr->next;
-		free(aux);
+		aux = curr->next;
+		free(curr);
+		curr = aux;
 	}
-	*root = NULL;
+	*a = NULL;
+	curr = *b;
+	while (curr != NULL)
+	{
+		aux = curr->next;
+		free(curr);
+		curr = aux;
+	}
+	*b = NULL;
 	return (0);
 }

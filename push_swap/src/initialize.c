@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 11:36:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 16:07:06 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:06:59 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ int	initialize_stacks(t_stack **a, t_stack **b, long *list, int size)
 	*b = initialize_stack_b();
 	if (!*a)
 		return (print_error("Error\n"));
-	print_stack("stack a\n", *a);
 	return (0);
 }

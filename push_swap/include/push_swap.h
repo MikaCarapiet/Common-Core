@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 16:04:53 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/15 13:52:47 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					main(int argc, char **argv);
 t_stack				*ft_lstnew_stack(int content);
 t_stack				*ft_lstlast_stack(t_stack *head);
 t_stack				*ft_lstpen_stack(t_stack *head);
-int					deallocate(t_stack **head);
+int					deallocate(t_stack **a, t_stack **b);
 void				insert_beginning(t_stack **root, int content);
 // validate.c
 int					print_error(char *str);
@@ -40,11 +40,19 @@ t_stack				*initialize_stack_a(long *list, int size);
 t_stack				*initialize_stack_b(void);
 
 void				print_stack(char *str, t_stack *head);
-void				push(t_stack **src, t_stack **dst);
-void				swap(t_stack **head);
-void				rotate(t_stack **head);
+void				push(t_stack **src, t_stack **dst, char *str);
+void				swap(t_stack **head, char *str);
+void				rotate(t_stack **head, char *str);
 void				swap_both(t_stack **a, t_stack **b);
 void				rotate_both(t_stack **a, t_stack **b);
 void				reverse_rotate_both(t_stack **a, t_stack **b);
-void				reverse_rotate(t_stack **head);
+void				reverse_rotate(t_stack **head, char *str);
+
+int					sort(t_stack **a, t_stack **b, int size);
+int					hardcode_sort(t_stack **a, t_stack **b, int size);
+int					is_unsorted(t_stack *a);
+int					two_sort(t_stack **a);
+int					three_sort(t_stack **a);
+int					four_sort(t_stack **a, t_stack **b);
+
 #endif

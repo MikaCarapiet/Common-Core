@@ -6,14 +6,14 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:28:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/28 13:19:57 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:31:33 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/push_swap.h"
 
-void	push(t_stack **src, t_stack **dst)
+void	push(t_stack **src, t_stack **dst, char *str)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -34,9 +34,10 @@ void	push(t_stack **src, t_stack **dst)
 		first->next = temp;
 		*src = second;
 	}
+	ft_printf("%s\n", str);
 }
 
-void	reverse_rotate(t_stack **head)
+void	reverse_rotate(t_stack **head, char *str)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -54,10 +55,12 @@ void	reverse_rotate(t_stack **head)
 		penultimate->next = NULL;
 		*head = last;
 	}
+	ft_printf("%s\n", str);
 }
 
 void	reverse_rotate_both(t_stack **a, t_stack **b)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
+	reverse_rotate(a, NULL);
+	reverse_rotate(b, NULL);
+	ft_printf("rrr\n");
 }
