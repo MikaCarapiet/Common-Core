@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:15:40 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/23 18:04:03 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:26:06 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	hardcode_sort(t_stack **a, t_stack **b, int size)
 		return (three_sort(a));
 	else if (size == 4)
 		return (four_sort(a, b));
+	else if (size == 5)
+		return (five_sort(a, b));
 	return (1);
 }
 
@@ -43,9 +45,9 @@ int	three_sort(t_stack **a)
 	mid = (*a)->next->content;
 	bottom = ft_lstlast_stack(*a)->content;
 	max = top;
-	if (top < mid)
+	if (max < mid)
 		max = mid;
-	if (mid < bottom)
+	else if (max < bottom)
 		max = bottom;
 	if (max == top)
 		rotate(a, "ra");
@@ -59,35 +61,73 @@ int	three_sort(t_stack **a)
 int	four_sort(t_stack **a, t_stack **b)
 {
 	int	min_pos;
-	int	current_pos;
 
-	get_min_val(a, &min_pos, &current_pos);
-	if (min_pos == 0)
+	get_min_val(a, &min_pos);
+	if (min_pos == 1)
+		rotate(a, "ra");
+	else if (min_pos == 2)
 	{
-		push(a, b, "pb");
-		three_sort(a);
-		push(b, a, "pa");
+		reverse_rotate(a, "rra");
+		reverse_rotate(a, "rra");
 	}
+	else if (min_pos == 3)
+		reverse_rotate(a, "rra");
+	push(a, b, "pb");
+	three_sort(a);
+	push(b, a, "pa");
 	return (0);
 }
-void	get_min_val(t_stack **a, int *min_pos, int *current_pos)
+
+int	five_sort(t_stack **a, t_stack **b)
+{
+	int	min_pos;
+
+	get_min_val(a, &min_pos);
+	push_min_val(a, b, min_pos);
+	get_min_val(a, &min_pos);
+	push_min_val(a, b, min_pos);
+	three_sort(a);
+	push(b, a, "pa");
+	push(b, a, "pa");
+	return (0);
+}
+void	get_min_val(t_stack **a, int *min_pos)
 {
 	int		min_val;
+	int		current_pos;
 	t_stack	*ptr;
 
 	min_val = (*a)->content;
 	ptr = (*a);
 	*min_pos = 0;
-	*current_pos = 0;
+	current_pos = 0;
 	while (ptr)
 	{
 		if (min_val > ptr->content)
 		{
 			min_val = ptr->content;
-			*min_pos = *current_pos;
+			*min_pos = current_pos;
 		}
-		*current_pos = *current_pos + 1;
+		current_pos = current_pos + 1;
 		ptr = ptr->next;
 	}
-	printf("%d = min_val, %d = min_pos\n", min_val, *min_pos);
+}
+
+void	push_min_val(t_stack **a, t_stack **b, int min_pos)
+{
+	if (min_pos == 1)
+		rotate(a, "ra");
+	if (min_pos == 2)
+	{
+		rotate(a, "rra");
+		swap(a, "sa");
+	}
+	if (min_pos == 3)
+	{
+		reverse_rotate(a, "rra");
+		reverse_rotate(a, "rra");
+	}
+	if (min_pos == 4)
+		reverse_rotate(a, "rra");
+	push(a, b, "pb");
 }
