@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:17:22 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/01/27 18:12:00 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/26 11:56:14 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ long	*check_duplicate(long *list, int size)
 		while (j < i)
 		{
 			if (unique_list[j] == list[i])
+			{
+				free(list);
 				return (free(unique_list), NULL);
+			}
 			j++;
 		}
 		unique_list[i] = list[i];

@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/24 15:25:53 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/02/26 10:49:24 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,16 @@ void				reverse_rotate_both(t_stack **a, t_stack **b);
 void				reverse_rotate(t_stack **head, char *str);
 
 int					sort(t_stack **a, t_stack **b, int size);
-int					hardcode_sort(t_stack **a, t_stack **b, int size);
 int					is_unsorted(t_stack *a);
+
+int					hardcode_sort(t_stack **a, t_stack **b, int size);
 int					two_sort(t_stack **a);
 int					three_sort(t_stack **a);
 int					four_sort(t_stack **a, t_stack **b);
+int					five_sort(t_stack **a, t_stack **b);
+
 void				get_min_val(t_stack **a, int *min_pos);
 void				push_min_val(t_stack **a, t_stack **b, int min_pos);
-int					five_sort(t_stack **a, t_stack **b);
+int					stack_size(t_stack *lst);
+
 #endif
