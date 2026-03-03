@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 11:36:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/11 15:06:59 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/03/03 15:45:41 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ t_stack	*initialize_stack_a(long *list, int size)
 {
 	t_stack	*a;
 	int		i;
+	int		index;
 
 	a = NULL;
 	i = 0;
+	index = 0;
 	while (size > i)
 	{
 		size--;
-		insert_beginning(&a, (int)list[size]);
+		insert_beginning(&a, (int)list[size], index);
+		index++;
 	}
 	return (a);
 }
