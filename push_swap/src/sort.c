@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 09:45:27 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/03/03 15:59:19 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/03/03 17:48:44 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	sort(t_stack **a, t_stack **b, int size)
 	{
 		if (size <= 5)
 			return (hardcode_sort(a, b, size));
+		assign_indexes(*a);
 		radix_sort(a, b);
 	}
 	return (0);
@@ -45,6 +46,7 @@ void	radix_sort(t_stack **a, t_stack **b)
 	int	max_bits;
 	int	bit;
 	int	i;
+	int	top;
 
 	size = stack_size(*a);
 	max_bits = get_max_bits(size);
@@ -54,15 +56,15 @@ void	radix_sort(t_stack **a, t_stack **b)
 		i = 0;
 		while (i < size)
 		{
-			int top = (*a)->content; // already indexed
+			top = (*a)->index;
 			if ((top >> bit) & 1)
-				rotate(a, "ra"); // bit is 1 → rotate
+				rotate(a, "ra");
 			else
-				push(a, b, "pb"); // bit is 0 → push to B
+				push(a, b, "pb");
 			i++;
 		}
 		while (*b)
-			push(a, b, "pa"); // push all back
+			push(b, a, "pa");
 		bit++;
 	}
 }
@@ -75,4 +77,29 @@ int	get_max_bits(int n)
 	while ((1 << bits) < n)
 		bits++;
 	return (bits);
+}
+
+void	assign_indexes(t_stack *a)
+{
+	int		rank;
+	int		size;
+	t_stack	*min_node;
+	t_stack	*temp;
+
+	size = stack_size(a);
+	rank = 0;
+	while (rank < size)
+	{
+		temp = a;
+		min_node = NULL;
+		while (temp)
+		{
+			if (temp->index == -1)
+				if (!min_node || temp->content < min_node->content)
+					min_node = temp;
+			temp = temp->next;
+		}
+		min_node->index = rank;
+		rank++;
+	}
 }

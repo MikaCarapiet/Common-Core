@@ -6,14 +6,14 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:03:51 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/03/03 15:45:29 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:55:09 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/push_swap.h"
 
-t_stack	*ft_lstnew_stack(int content, int index)
+t_stack	*ft_lstnew_stack(int content)
 {
 	t_stack	*new_node;
 
@@ -21,7 +21,7 @@ t_stack	*ft_lstnew_stack(int content, int index)
 	if (new_node == NULL)
 		return (NULL);
 	new_node->content = content;
-	new_node->index = index;
+	new_node->index = -1;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -58,11 +58,11 @@ t_stack	*ft_lstpen_stack(t_stack *head)
 	return (ptr);
 }
 
-void	insert_beginning(t_stack **root, int content, int index)
+void	insert_beginning(t_stack **root, int content)
 {
 	t_stack	*new_node;
 
-	new_node = ft_lstnew_stack(content, index);
+	new_node = ft_lstnew_stack(content);
 	new_node->next = *root;
 	*root = new_node;
 }

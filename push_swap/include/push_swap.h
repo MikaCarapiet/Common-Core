@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/03/03 15:59:37 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/03/03 17:46:37 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ typedef struct s_stack
 
 // main.c
 int					main(int argc, char **argv);
-t_stack				*ft_lstnew_stack(int content, int index);
+t_stack				*ft_lstnew_stack(int content);
 t_stack				*ft_lstlast_stack(t_stack *head);
 t_stack				*ft_lstpen_stack(t_stack *head);
 int					deallocate(t_stack **a, t_stack **b);
-void				insert_beginning(t_stack **root, int content, int index);
+void				insert_beginning(t_stack **root, int content);
 // validate.c
 int					print_error(char *str);
 int					validate_arg(int argc, char **argv, long **list);
@@ -64,4 +64,5 @@ int					stack_size(t_stack *lst);
 
 int					get_max_bits(int n);
 void				radix_sort(t_stack **a, t_stack **b);
+void				assign_indexes(t_stack *a);
 #endif

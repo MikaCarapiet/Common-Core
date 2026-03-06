@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:17:22 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/26 11:56:14 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/03/06 14:55:23 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ int	validate_arg(int argc, char **argv, long **list)
 
 int	print_error(char *str)
 {
-	printf("%s", str);
+	ft_printf("%s", str);
 	return (1);
 }
