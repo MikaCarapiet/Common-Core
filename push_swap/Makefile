@@ -6,17 +6,17 @@ SRCDIR = src
 OBJDIR = obj
 LIBDIR = libft
 
-SRCS = main.c validate.c initialize.c rules1.c rules2.c lst_functions.c sort.c hardcode_sort.c hardcode_helper.c
+SRCS = main.c validate.c validate_helper.c initialize.c rules1.c rules2.c lst_functions.c sort.c hardcode_sort.c hardcode_helper.c
 OBJS = $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
 LIBNAME = libft.a
 LIB = $(LIBDIR)/$(LIBNAME)
 
-debug: CFLAGS += -g -fsanitize=address
-debug: $(NAME)
 
 all: $(NAME)
 
+debug: CFLAGS += -g -fsanitize=address
+debug: $(NAME)
 
 $(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBDIR) -lft -o $(NAME)

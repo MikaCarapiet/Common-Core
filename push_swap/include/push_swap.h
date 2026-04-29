@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/03/03 17:46:37 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:26:39 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ t_stack				*ft_lstpen_stack(t_stack *head);
 int					deallocate(t_stack **a, t_stack **b);
 void				insert_beginning(t_stack **root, int content);
 // validate.c
-int					print_error(char *str);
+int					print_error(void);
 int					validate_arg(int argc, char **argv, long **list);
 long				*check_duplicate(long *list, int size);
 long				*parse_arg(int argc, char **argv);
-long				ft_strtol(const char *strg);
+int					ft_atol_checked(const char *str, long *out);
+
+// validate_helper.c
+int					is_digit(char c);
+int					is_over_int(long res, int sign);
 
 // initialize.c
 int					initialize_stacks(t_stack **a, t_stack **b, long *list,

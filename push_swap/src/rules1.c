@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:28:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/23 15:28:49 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:31:04 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	swap(t_stack **head, char *str)
 		first->next = temp;
 		*head = second;
 	}
-	ft_printf("%s\n", str);
+	if (str)
+		ft_printf("%s\n", str);
 }
 
 void	rotate(t_stack **head, char *str)
@@ -52,7 +53,8 @@ void	rotate(t_stack **head, char *str)
 		first->next = NULL;
 		*head = second;
 	}
-	ft_printf("%s\n", str);
+	if (str)
+		ft_printf("%s\n", str);
 }
 
 void	rotate_both(t_stack **a, t_stack **b)

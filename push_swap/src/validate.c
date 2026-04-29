@@ -6,14 +6,14 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:17:22 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/03/06 14:55:23 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:26:50 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/push_swap.h"
 
-long	ft_strtol(const char *strg)
+int	ft_atol_checked(const char *str, long *out)
 {
 	long	res;
 	int		i;
@@ -22,22 +22,23 @@ long	ft_strtol(const char *strg)
 	res = 0;
 	i = 0;
 	sign = 1;
-	if ((strg[i] < '0' || strg[i] > '9') && strg[i] != '-')
-		return (LONG_MAX);
-	else if (strg[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		sign *= -1;
-		i += 1;
+		if (str[i++] == '-')
+			sign = -1;
 	}
-	while (strg[i] != '\0')
+	if (!str[i])
+		return (0);
+	while (str[i])
 	{
-		if (strg[i] >= '0' && strg[i] <= '9')
-			res = res * 10 + (strg[i] - '0');
-		else
-			return (LONG_MAX);
-		i++;
+		if (!is_digit(str[i]))
+			return (0);
+		res = res * 10 + (str[i++] - '0');
+		if (is_over_int(res, sign))
+			return (0);
 	}
-	return (res * sign);
+	*out = res * sign;
+	return (1);
 }
 
 long	*parse_arg(int argc, char **argv)
@@ -52,8 +53,7 @@ long	*parse_arg(int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 	{
-		list[i - 1] = ft_strtol(argv[i]);
-		if ((list[i - 1] > INT_MAX) || (list[i - 1] < INT_MIN))
+		if (!ft_atol_checked(argv[i], &list[i - 1]))
 			return (free(list), NULL);
 	}
 	return (list);
@@ -67,7 +67,7 @@ long	*check_duplicate(long *list, int size)
 
 	i = 0;
 	unique_list = malloc(size * sizeof(long));
-	if (!*list || !unique_list)
+	if (!list || !unique_list)
 		return (NULL);
 	while (i < size)
 	{
@@ -91,15 +91,15 @@ int	validate_arg(int argc, char **argv, long **list)
 {
 	*list = parse_arg(argc, argv);
 	if (!*list)
-		return (print_error("Error\n"));
+		return (print_error());
 	*list = check_duplicate(*list, (argc - 1));
 	if (!*list)
-		return (print_error("Error\n"));
+		return (print_error());
 	return (0);
 }
 
-int	print_error(char *str)
+int	print_error(void)
 {
-	ft_printf("%s", str);
+	write(2, "Error\n", 6);
 	return (1);
 }

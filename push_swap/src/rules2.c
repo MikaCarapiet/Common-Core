@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:28:13 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/02/11 11:31:33 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:29:36 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	reverse_rotate(t_stack **head, char *str)
 		penultimate->next = NULL;
 		*head = last;
 	}
-	ft_printf("%s\n", str);
+	if (str)
+		ft_printf("%s\n", str);
 }
 
 void	reverse_rotate_both(t_stack **a, t_stack **b)
