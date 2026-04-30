@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/29 17:39:54 by mcarapie          #+#    #+#             */
+/*   Updated: 2026/04/30 21:06:30 by mcarapie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINITALK_H
+# define MINITALK_H
+
+# define _POSIX_C_SOURCE 200809L
+
+# include <signal.h>
+# include <stdio.h>
+# include <unistd.h>
+
+void	ft_putnbr(int c);
+int		ft_atoi(const char *strg);
+void	send_char(int pid, char c);
+void	send_string(int pid, char *c);
+#endif
