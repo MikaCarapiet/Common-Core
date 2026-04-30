@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 18:17:19 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/04/29 18:34:41 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:47:01 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_over_int(long res, int sign)
 {
 	if (sign == 1 && res > INT_MAX)
 		return (1);
-	if (sign == -1 && -res < INT_MIN)
+	if (sign == -1 && -(res) < INT_MIN)
 		return (1);
 	return (0);
 }
