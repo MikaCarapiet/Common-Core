@@ -67,10 +67,10 @@ Reference documentation:
 
 Helpful tutorials:
 
-- GeeksforGeeks: Signals in C language - https://www.geeksforgeeks.org/c/signals-c-language/
-- GeeksforGeeks: Communication between two processes using signals in C - https://www.geeksforgeeks.org/c/signals-c-set-2/
-- GeeksforGeeks: fork system call and process IDs in C - https://www.geeksforgeeks.org/fork-system-call/
-- Beej's Guide to Unix IPC: Signals - https://beej.us/guide/bgipc/html/split/signals.html
+- [GeeksforGeeks: Signals in C language](https://www.geeksforgeeks.org/c/signals-c-language/)
+- [GeeksforGeeks: Communication between two processes using signals in C](https://www.geeksforgeeks.org/c/signals-c-set-2/)
+- [GeeksforGeeks: fork system call and process IDs in C](https://www.geeksforgeeks.org/fork-system-call/)
+- [Beej's Guide to Unix IPC: Signals](https://beej.us/guide/bgipc/html/split/signals.html)
 
 AI was used to help review the project against the subject requirements,
 suggest test cases, and identify small issues such as README compliance,
