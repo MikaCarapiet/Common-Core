@@ -12,11 +12,10 @@ SERVER_SRCS = server.c utils.c
 CLIENT_OBJS = $(addprefix $(OBJDIR)/,$(CLIENT_SRCS:.c=.o))
 SERVER_OBJS = $(addprefix $(OBJDIR)/,$(SERVER_SRCS:.c=.o))
 
-debug: CFLAGS += -g -fsanitize=address
-debug: all
-
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
+debug: CFLAGS += -g -fsanitize=address
+debug: all
 
 $(NAME_CLIENT): $(CLIENT_OBJS)
 	$(CC) $(CFLAGS) $(CLIENT_OBJS) -o $(NAME_CLIENT)
@@ -37,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug
