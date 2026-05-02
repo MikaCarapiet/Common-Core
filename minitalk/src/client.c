@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:37:56 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/04/30 21:37:30 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/02 14:56:51 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,56 @@ void	send_char(int pid, char c)
 {
 	int	bit_index;
 	int	current_bit;
+	int	signal_to_send;
 
 	bit_index = 7;
 	while (bit_index >= 0)
 	{
-		current_bit = (c >> bit_index) & 1;
-		if (current_bit == 0)
-			kill(pid, SIGUSR1);
-		else if (current_bit == 1)
-			kill(pid, SIGUSR2);
-		usleep(300);
+		current_bit = ((unsigned char)c >> bit_index) & 1;
+		signal_to_send = SIGUSR1;
+		if (current_bit == 1)
+			signal_to_send = SIGUSR2;
+		if (kill(pid, signal_to_send) == -1)
+		{
+			write(2, "Error: failed to send signal\n", 29);
+			exit(1);
+		}
+		usleep(500);
 		bit_index--;
 	}
+}
+
+int	is_valid_pid(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || str[0] == '\0')
+		return (0);
+	while (str[i])
+	{
+		if (str[i] > '9' || str[i] < '0')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	int	pid;
 
-	if (argc == 3)
+	if (argc != 3 || !is_valid_pid(argv[1]))
 	{
-		if (!is_valid_pid(argv[1]))
-		{
-			write(2, "Error: invalid PID\n", 19);
-			return (1);
-		}
-		pid = ft_atoi(argv[1]);
-		send_string(pid, argv[2]);
+		write(2, "Error: invalid arguments\n", 26);
+		return (1);
 	}
-	else
-		write(2, "Please enter in this format: ./client <PID> \"message\"\n",
-			55);
+	pid = ft_atoi(argv[1]);
+	if (pid <= 0)
+	{
+		write(2, "Error: invalid PID\n", 20);
+		return (1);
+	}
+	send_string(pid, argv[2]);
 	return (0);
 }
