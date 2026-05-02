@@ -6,10 +6,9 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:37:56 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/02 15:24:56 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/02 15:52:59 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/minitalk.h"
 
