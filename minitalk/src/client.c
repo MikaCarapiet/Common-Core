@@ -6,11 +6,10 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:37:56 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/02 14:56:51 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/02 15:24:56 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _DEFAULT_SOURCE
 
 #include "../include/minitalk.h"
 
@@ -72,13 +71,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 3 || !is_valid_pid(argv[1]))
 	{
-		write(2, "Error: invalid arguments\n", 26);
+		write(2, "Error: invalid arguments\n", 25);
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
 	if (pid <= 0)
 	{
-		write(2, "Error: invalid PID\n", 20);
+		write(2, "Error: invalid PID\n", 19);
 		return (1);
 	}
 	send_string(pid, argv[2]);
