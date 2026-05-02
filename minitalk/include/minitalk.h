@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:39:54 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/02 15:02:51 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/02 15:22:51 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINITALK_H
 
 # define _POSIX_C_SOURCE 200809L
+# define _DEFAULT_SOURCE
 
 # include <signal.h>
 # include <stdio.h>
