@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:43:08 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/06 14:25:14 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/06 16:03:44 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_fractol
 
 	double	julia_real;
 	double	julia_imag;
+
+	double	min_real;
+	double	max_real;
+	double	min_imag;
+	double	max_imag;
+
 	int		type;
 	int		max_iterations;
 	int		width;
@@ -65,7 +71,7 @@ int			get_iterations(double real_x, double imag_y, t_fractol *fractol);
 int			julia_iterations(double z_real, double z_imag, t_fractol *fractol);
 int			mandelbrot_iterations(double c_real, double c_imag,
 				t_fractol *fractol);
-
+int			mouse_handler(int button, int x, int y, t_fractol *fractol);
 // parsing & validating arguments
 int			parse_args(int argc, char **argv, t_fractol *fractol);
 int			is_valid_double(char *str);

@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:42:35 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/06 14:25:00 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/06 16:23:53 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,42 @@ int	ft_keypress(int keycode, t_fractol *mlxptr)
 	return (0);
 }
 
+int	mouse_handler(int button, int x, int y, t_fractol *fractol)
+{
+	(void)x;
+	(void)y;
+	if (button == 4)
+	{
+		fractol->min_imag *= 0.95;
+		fractol->max_imag *= 0.95;
+		fractol->min_real *= 0.95;
+		fractol->max_real *= 0.95;
+	}
+	if (button == 5)
+	{
+		fractol->min_imag /= 0.95;
+		fractol->max_imag /= 0.95;
+		fractol->min_real /= 0.95;
+		fractol->max_real /= 0.95;
+	}
+	render(fractol);
+	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img, 0, 0);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_fractol	fractol;
 
+	init_vars(&fractol);
 	if (!parse_args(argc, argv, &fractol))
 		return (1);
-	init_vars(&fractol);
 	if (init_fractol(&fractol))
 		return (1);
 	init_image(&fractol);
 	render(&fractol);
 	mlx_put_image_to_window(fractol.mlx, fractol.win, fractol.img, 0, 0);
+	mlx_mouse_hook(fractol.win, mouse_handler, &fractol);
 	mlx_hook(fractol.win, 17, 0, &ft_close, &fractol);
 	mlx_hook(fractol.win, KeyPress, KeyPressMask, &ft_keypress, &fractol);
 	mlx_loop(fractol.mlx);

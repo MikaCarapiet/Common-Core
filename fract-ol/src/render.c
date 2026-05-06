@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:42:39 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/06 13:45:36 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/06 15:54:31 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ double	map_real(int x, t_fractol *fractol)
 {
 	double	real_x;
 
-	real_x = ((double)x / (fractol->width - 1)) * 4.0 - 2.0;
+	real_x = fractol->min_real + ((double)x / (fractol->width - 1))
+		* (fractol->max_real - fractol->min_real);
 	return (real_x);
 }
 
@@ -25,7 +26,8 @@ double	map_imag(int y, t_fractol *fractol)
 {
 	double	imag_y;
 
-	imag_y = 1.5 - ((double)y / (fractol->height - 1)) * 3.0;
+	imag_y = fractol->max_imag - ((double)y / (fractol->height - 1))
+		* (fractol->max_imag - fractol->min_imag);
 	return (imag_y);
 }
 

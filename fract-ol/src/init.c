@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:42:32 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/06 15:08:54 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/06 16:24:51 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	init_vars(t_fractol *fractol)
 	fractol->height = 600;
 	fractol->width = 800;
 	fractol->max_iterations = 100;
+	fractol->min_imag = 1.5;
+	fractol->max_imag = -1.5;
+	fractol->min_real = -2.0;
+	fractol->max_real = 2.0;
 }
 
 int	init_fractol(t_fractol *fractol)
