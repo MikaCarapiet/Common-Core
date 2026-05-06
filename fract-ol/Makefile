@@ -4,9 +4,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCDIR = src
 OBJDIR = obj
-MLX_DIR = ./mlx_linux
+MLX_DIR = minilibx-linux
+MLX_REPO = https://github.com/42paris/minilibx-linux.git
 MLX_LIB = $(MLX_DIR)/libmlx.a
-MLX_SRC = $(wildcard $(MLX_DIR)/*.c) $(wildcard $(MLX_DIR)/*.h)
 LIBDIR = libft
 
 LIBNAME = libft.a
@@ -29,11 +29,14 @@ $(NAME): $(LIB) $(MLX_LIB) $(OBJS)
 $(LIB):
 	make -C $(LIBDIR)
 
-$(MLX_LIB): $(MLX_SRC)
+$(MLX_DIR):
+	git clone $(MLX_REPO) $(MLX_DIR)
+
+$(MLX_LIB): | $(MLX_DIR)
 	make -C $(MLX_DIR)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR) $(MLX_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)

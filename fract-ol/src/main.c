@@ -40,8 +40,11 @@ int	ft_keypress(int keycode, t_fractol *mlxptr)
 	return (0);
 }
 
-int	mouse_handler(int button, int x, int y, t_fractol *fractol)
+int	mouse_handler(int button, int x, int y, void *param)
 {
+	t_fractol	*fractol;
+
+	fractol = (t_fractol *)param;
 	(void)x;
 	(void)y;
 	if (button == 4)

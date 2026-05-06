@@ -13,7 +13,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../mlx_linux/mlx.h"
+# include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysymdef.h>
 # include <stdlib.h>
@@ -74,7 +74,7 @@ int			get_iterations(double real_x, double imag_y, t_fractol *fractol);
 int			julia_iterations(double z_real, double z_imag, t_fractol *fractol);
 int			mandelbrot_iterations(double c_real, double c_imag,
 				t_fractol *fractol);
-int			mouse_handler(int button, int x, int y, t_fractol *fractol);
+int			mouse_handler(int button, int x, int y, void *param);
 
 // parsing & validating arguments
 int			parse_args(int argc, char **argv, t_fractol *fractol);
