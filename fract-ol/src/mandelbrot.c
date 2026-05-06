@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:42:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/05 19:52:35 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/05 22:11:11 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ int	mandelbrot_iterations(double c_real, double c_imag, t_fractol *fractol)
 	return (fractol->max_iterations);
 }
 
-int	render_mandelbrot(double c_real, double c_imag, t_fractol *fractol)
-{
-	int iterations;
+// int	render_mandelbrot(double c_real, double c_imag, t_fractol *fractol)
+// {
+// 	int iterations;
 
-	iterations = mandelbrot_iterations(c_real, c_imag, fractol);
-}
+// 	iterations = mandelbrot_iterations(c_real, c_imag, fractol);
+
+// }
