@@ -5,6 +5,8 @@ CFLAGS = -Wall -Wextra -Werror
 SRCDIR = src
 OBJDIR = obj
 MLX_DIR = ./mlx_linux
+MLX_LIB = $(MLX_DIR)/libmlx.a
+MLX_SRC = $(wildcard $(MLX_DIR)/*.c) $(wildcard $(MLX_DIR)/*.h)
 LIBDIR = libft
 
 LIBNAME = libft.a
@@ -21,11 +23,14 @@ all: $(NAME)
 debug: CFLAGS += -g -fsanitize=address
 debug: all
 
-$(NAME): $(LIB) $(OBJS)
+$(NAME): $(LIB) $(MLX_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBDIR) -lft $(MLXFLAGS) -o $(NAME)
 
 $(LIB):
 	make -C $(LIBDIR)
+
+$(MLX_LIB): $(MLX_SRC)
+	make -C $(MLX_DIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -35,6 +40,7 @@ $(OBJDIR):
 clean:
 	rm -rf $(OBJDIR)
 	make -C $(LIBDIR) clean
+	make -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
