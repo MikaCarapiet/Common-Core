@@ -6,8 +6,9 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:42:25 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/03 14:58:27 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/06 12:57:54 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
+#include "../include/libft.h"
