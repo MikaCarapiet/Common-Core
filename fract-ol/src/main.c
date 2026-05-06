@@ -28,6 +28,11 @@ int	ft_close(t_fractol *fractol, int status)
 	return (status);
 }
 
+int	close_window(t_fractol *fractol)
+{
+	return (ft_close(fractol, 0));
+}
+
 int	ft_keypress(int keycode, t_fractol *mlxptr)
 {
 	if (keycode == 65307)
@@ -71,7 +76,7 @@ int	main(int argc, char **argv)
 	render(&fractol);
 	mlx_put_image_to_window(fractol.mlx, fractol.win, fractol.img, 0, 0);
 	mlx_mouse_hook(fractol.win, mouse_handler, &fractol);
-	mlx_hook(fractol.win, 17, 0, &ft_close, &fractol);
+	mlx_hook(fractol.win, 17, 0, &close_window, &fractol);
 	mlx_hook(fractol.win, KeyPress, KeyPressMask, &ft_keypress, &fractol);
 	mlx_loop(fractol.mlx);
 	return (0);

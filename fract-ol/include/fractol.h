@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 13:43:08 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/05/06 16:03:44 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/06 16:40:13 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define MANDELBROT 1
 # define JULIA 2
+
 typedef struct s_fractol
 {
 	void	*mlx;
@@ -61,6 +62,8 @@ void		init_vars(t_fractol *fractol);
 int			init_fractol(t_fractol *fractol);
 void		init_image(t_fractol *fractol);
 int			ft_close(t_fractol *fractol, int status);
+int			close_window(t_fractol *fractol);
+
 // rendering and mapping values
 void		render(t_fractol *fractol);
 void		buffer_fill(t_fractol *fractol, int pixel, int color);
@@ -72,6 +75,7 @@ int			julia_iterations(double z_real, double z_imag, t_fractol *fractol);
 int			mandelbrot_iterations(double c_real, double c_imag,
 				t_fractol *fractol);
 int			mouse_handler(int button, int x, int y, t_fractol *fractol);
+
 // parsing & validating arguments
 int			parse_args(int argc, char **argv, t_fractol *fractol);
 int			is_valid_double(char *str);

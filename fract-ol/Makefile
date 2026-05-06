@@ -12,7 +12,7 @@ LIBDIR = libft
 LIBNAME = libft.a
 LIB = $(LIBDIR)/$(LIBNAME)
 
-SRCS = args.c cleanup.c color.c events.c init.c julia.c main.c mandelbrot.c render.c math_utils.c
+SRCS = args.c color_fill.c init.c main.c fractals.c render.c utils.c
 OBJS = $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
 MLXFLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
