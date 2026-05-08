@@ -41,29 +41,27 @@ int	ft_atol_checked(const char *str, long *out)
 	return (1);
 }
 
-long	*parse_arg(int argc, char **argv)
+long	*parse_arg(int argc, char **argv, int *size)
 {
 	long	*list;
-	int		i;
 
 	list = NULL;
-	list = malloc((argc - 1) * sizeof(long));
+	*size = count_values(argc, argv);
+	if (*size <= 0)
+		return (NULL);
+	list = malloc(*size * sizeof(long));
 	if (list == NULL)
 		return (NULL);
-	i = 0;
-	while (++i < argc)
-	{
-		if (!ft_atol_checked(argv[i], &list[i - 1]))
-			return (free(list), NULL);
-	}
+	if (fill_values(list, argc, argv))
+		return (free(list), NULL);
 	return (list);
 }
 
 long	*check_duplicate(long *list, int size)
 {
-	int	i;
-	int	j;
-	int	*unique_list;
+	int		i;
+	int		j;
+	long	*unique_list;
 
 	i = 0;
 	unique_list = malloc(size * sizeof(long));
@@ -87,12 +85,12 @@ long	*check_duplicate(long *list, int size)
 	return (free(unique_list), list);
 }
 
-int	validate_arg(int argc, char **argv, long **list)
+int	validate_arg(int argc, char **argv, long **list, int *size)
 {
-	*list = parse_arg(argc, argv);
+	*list = parse_arg(argc, argv, size);
 	if (!*list)
 		return (print_error());
-	*list = check_duplicate(*list, (argc - 1));
+	*list = check_duplicate(*list, *size);
 	if (!*list)
 		return (print_error());
 	return (0);

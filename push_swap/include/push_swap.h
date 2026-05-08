@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:19:36 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/04/29 18:26:39 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/05/08 10:41:52 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,25 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-// main.c
 int					main(int argc, char **argv);
 t_stack				*ft_lstnew_stack(int content);
 t_stack				*ft_lstlast_stack(t_stack *head);
 t_stack				*ft_lstpen_stack(t_stack *head);
 int					deallocate(t_stack **a, t_stack **b);
 void				insert_beginning(t_stack **root, int content);
-// validate.c
+
 int					print_error(void);
-int					validate_arg(int argc, char **argv, long **list);
+int					validate_arg(int argc, char **argv, long **list, int *size);
 long				*check_duplicate(long *list, int size);
-long				*parse_arg(int argc, char **argv);
+long				*parse_arg(int argc, char **argv, int *size);
 int					ft_atol_checked(const char *str, long *out);
 
-// validate_helper.c
 int					is_digit(char c);
 int					is_over_int(long res, int sign);
+void				free_tokens(char **tokens);
+int					count_values(int argc, char **argv);
+int					fill_values(long *list, int argc, char **argv);
 
-// initialize.c
 int					initialize_stacks(t_stack **a, t_stack **b, long *list,
 						int size);
 t_stack				*initialize_stack_a(long *list, int size);

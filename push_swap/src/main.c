@@ -22,8 +22,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (1);
-	size = argc - 1;
-	if (validate_arg(argc, argv, &list))
+	if (validate_arg(argc, argv, &list, &size))
 		return (1);
 	if (initialize_stacks(&stack_a, &stack_b, list, size))
 		return (1);
