@@ -42,14 +42,14 @@ Check a sorted input:
 Check a random 100-number input:
 
 ```sh
-ARG="$(jot -r 100 -1000 1000 | sort -u | head -100 | tr '\n' ' ')"
+ARG=$(seq -1000 1000 | shuf | head -100 | tr '\n' ' ')
 ./push_swap $ARG | wc -l
 ```
 
 Check a random 500-number input:
 
 ```sh
-ARG="$(jot -r 1000 -10000 10000 | sort -u | head -500 | tr '\n' ' ')"
+ARG=$(seq -1000 1000 | shuf | head -500 | tr '\n' ' ')
 ./push_swap $ARG | wc -l
 ```
 
@@ -63,7 +63,7 @@ ARG="4 1 3 2"
 With 500 random numbers and the checker:
 
 ```sh
-ARG="$(jot -r 1000 -10000 10000 | sort -u | head -500 | tr '\n' ' ')"
+ARG=$(seq -1000 1000 | shuf | head -500 | tr '\n' ' ')
 ./push_swap $ARG | ./checker_linux $ARG
 ```
 
