@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 13:17:34 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/09/25 16:01:27 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/10/31 19:55:43 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_sim
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	state_lock;
 	pthread_mutex_t	print_lock;
+	int				forks_ready;
+	int				locks_ready;
+	int				threads_started;
 }					t_sim;
 
 typedef struct s_philo
@@ -47,17 +50,17 @@ typedef struct s_philo
 	t_sim			*sim;
 }					t_philo;
 
-int			parse_args(int argc, char **argv, t_sim *sim);
-int			initialize_simulation(t_sim *sim);
-int			start_threads(t_sim *sim);
-void		join_threads(t_sim *sim);
-void		*routine(void *arg);
-void		monitor_simulation(t_sim *sim);
-long long	get_time_ms(void);
-void		sleep_ms(t_sim *sim, long long duration);
-int			simulation_stopped(t_sim *sim);
-void		stop_simulation(t_sim *sim);
-void		print_status(t_philo *philo, const char *status);
-void		cleanup(t_sim *sim);
+int					parse_args(int argc, char **argv, t_sim *sim);
+int					initialize_simulation(t_sim *sim);
+int					start_threads(t_sim *sim);
+void				join_threads(t_sim *sim);
+void				*routine(void *arg);
+void				monitor_simulation(t_sim *sim);
+long long			get_time_ms(void);
+void				sleep_ms(t_sim *sim, long long duration);
+int					simulation_stopped(t_sim *sim);
+void				stop_simulation(t_sim *sim);
+void				print_status(t_philo *philo, const char *status);
+void				cleanup(t_sim *sim);
 
 #endif
