@@ -6,7 +6,7 @@
 /*   By: mcarapie <mcarapie@student.42singapore.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 13:17:03 by mcarapie          #+#    #+#             */
-/*   Updated: 2026/09/25 16:07:56 by mcarapie         ###   ########.fr       */
+/*   Updated: 2026/11/01 17:03:46 by mcarapie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,28 @@
 /* TODO: Read the stop flag while holding state_lock. */
 int	simulation_stopped(t_sim *sim)
 {
-	(void)sim;
-	return (0);
+	int	stopped;
+
+	pthread_mutex_lock(&sim->state_lock);
+	stopped = sim->stop;
+	pthread_mutex_unlock(&sim->state_lock);
+	return (stopped);
 }
 
 /* TODO: Set the stop flag while holding state_lock. */
 void	stop_simulation(t_sim *sim)
 {
-	(void)sim;
+	pthread_mutex_lock(&sim->state_lock);
+	sim->stop = 1;
+	pthread_mutex_unlock(&sim->state_lock);
 }
 
 /* TODO: Serialize status output and respect the simulation stop state. */
 void	print_status(t_philo *philo, const char *status)
 {
-	(void)philo;
-	(void)status;
+	pthread_mutex_lock(&philo->sim->print_lock);
+	if (!simulation_stopped(philo->sim))
+		printf("%lld %d %s\n", get_time_ms() - philo->sim->start_time,
+			philo->position, status);
+	pthread_mutex_unlock(&philo->sim->print_lock);
 }
