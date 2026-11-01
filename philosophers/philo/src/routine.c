@@ -31,7 +31,6 @@ static void	eat(t_philo *philo)
 	pthread_mutex_unlock(&sim->forks[philo->right_fork]);
 }
 
-/* TODO: Run this philosopher's fork, eating, sleeping and thinking loop. */
 void	*routine(void *arg)
 {
 	t_philo	*philo;

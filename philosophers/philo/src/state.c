@@ -12,7 +12,6 @@
 
 #include "philo.h"
 
-/* TODO: Read the stop flag while holding state_lock. */
 int	simulation_stopped(t_sim *sim)
 {
 	int	stopped;
@@ -23,7 +22,6 @@ int	simulation_stopped(t_sim *sim)
 	return (stopped);
 }
 
-/* TODO: Set the stop flag while holding state_lock. */
 void	stop_simulation(t_sim *sim)
 {
 	pthread_mutex_lock(&sim->state_lock);
@@ -31,7 +29,6 @@ void	stop_simulation(t_sim *sim)
 	pthread_mutex_unlock(&sim->state_lock);
 }
 
-/* TODO: Serialize status output and respect the simulation stop state. */
 void	print_status(t_philo *philo, const char *status)
 {
 	pthread_mutex_lock(&philo->sim->print_lock);

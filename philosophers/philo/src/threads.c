@@ -12,7 +12,6 @@
 
 #include "philo.h"
 
-/* TODO: Create threads and record how many started successfully. */
 int	start_threads(t_sim *sim)
 {
 	int	i;
@@ -31,7 +30,6 @@ int	start_threads(t_sim *sim)
 	return (0);
 }
 
-/* TODO: Join only the threads that were successfully created. */
 void	join_threads(t_sim *sim)
 {
 	int	i;

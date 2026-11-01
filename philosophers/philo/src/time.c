@@ -12,7 +12,6 @@
 
 #include "philo.h"
 
-/* TODO: Return the current time in milliseconds using gettimeofday. */
 long long	get_time_ms(void)
 {
 	struct timeval	tv;
@@ -21,7 +20,6 @@ long long	get_time_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-/* TODO: Wait for duration milliseconds while checking the stop flag. */
 void	sleep_ms(t_sim *sim, long long duration)
 {
 	long long	start;
