@@ -46,6 +46,11 @@ static void	init_philos(t_sim *sim)
 		sim->philos[i].meals_eaten = 0;
 		sim->philos[i].left_fork = i;
 		sim->philos[i].right_fork = (i + 1) % sim->number_of_philosophers;
+		if (i == sim->number_of_philosophers - 1)
+		{
+			sim->philos[i].left_fork = 0;
+			sim->philos[i].right_fork = i;
+		}
 		sim->philos[i].sim = sim;
 		i++;
 	}

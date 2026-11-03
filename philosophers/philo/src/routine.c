@@ -12,6 +12,20 @@
 
 #include "philo.h"
 
+static void	think(t_philo *philo)
+{
+	t_sim		*sim;
+	long long	t;
+
+	sim = philo->sim;
+	print_status(philo, "is thinking");
+	t = sim->time_to_eat - sim->time_to_sleep;
+	if (sim->number_of_philosophers % 2)
+		t = sim->time_to_eat * 2 - sim->time_to_sleep;
+	if (t > 0)
+		sleep_ms(sim, t);
+}
+
 static void	eat(t_philo *philo)
 {
 	t_sim	*sim;
@@ -51,7 +65,7 @@ void	*routine(void *arg)
 		eat(philo);
 		print_status(philo, "is sleeping");
 		sleep_ms(philo->sim, philo->sim->time_to_sleep);
-		print_status(philo, "is thinking");
+		think(philo);
 	}
 	return (NULL);
 }
