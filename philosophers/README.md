@@ -119,7 +119,4 @@ code myself, and used AI for:
 - **Understanding helgrind:** explaining the lock-order warning helgrind reported
   (forks locked in an order that forms a loop, which could cause a deadlock) and why
   locking the lower-numbered fork first removes it.
-- **Changes it made at my request:** part of the argument parsing in `parse.c`, and
-  the lock-order fix (lower-numbered fork first, and the short pause after thinking).
-  I reviewed each change and made sure I understood it.
 - **Setup:** fixing my Git and GitHub setup on macOS.
