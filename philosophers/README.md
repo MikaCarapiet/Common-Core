@@ -116,8 +116,11 @@ code myself, and used AI for:
   then fixed.
 - **Testing:** writing small test programs and running the program under ThreadSanitizer,
   `leaks`, helgrind and DRD to look for data races, leaks and timing problems.
-- **Code it wrote at my request:** the mutex setup in `init.c`, part of the argument
-  parsing in `parse.c`, and the fix for a lock-order warning from helgrind (taking
-  the lower-numbered fork first, and the short pause after thinking). I reviewed each
+- **Understanding helgrind:** explaining the lock-order warning helgrind reported
+  (forks locked in an order that forms a loop, which could cause a deadlock) and why
+  locking the lower-numbered fork first removes it.
+- **Changes it made at my request:** fixes to my `init.c` (setup counters and Norm
+  layout), part of the argument parsing in `parse.c`, and the lock-order fix
+  (lower-numbered fork first, and the short pause after thinking). I reviewed each
   change and made sure I understood it.
 - **Setup:** fixing my Git and GitHub setup on macOS.
